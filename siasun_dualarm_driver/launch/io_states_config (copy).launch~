@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!-- 
+  Wrapper launch file for the Fanuc specific IO_state node.
+-->
+<launch>
+  <!-- put them on the parameter server -->
+<!--
+  <arg name="use_bswap" value="arg use_bswap"/>
+  <param name="robot_ip_address" value="arg robot_ip"/>
+-->
+  <arg name="use_bswap"/>
+  <arg name="robot_ip"/>
+  <param name="robot_ip_address" type="str" value="$(arg robot_ip)"/>
+  <!-- load the correct version of the IO states node -->
+  <node if="$(arg use_bswap)" name="IO_states_bswap" 
+    pkg="siasun_dualarm_driver" type="IO_states_bswap" output="screen"/>
+  <node unless="$(arg use_bswap)" name="IO_states" 
+    pkg="siasun_dualarm_driver" type="IO_states" output="screen"/>
+</launch>

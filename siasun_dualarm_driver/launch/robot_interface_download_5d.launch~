@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<launch>
+   <arg name="use_bswap"/>
+  <arg name="robot_ip"/>
+ 
+  <rosparam command="load" file="$(find siasun_dualarm5b_moveit_config)/config/joint_names.yaml" />
+<!--  <rosparam command="load" file="$(find siasun_dualarm5b_support)/config/siasun_dualarm5b_motion_interface.yaml" /> -->
+  <rosparam command="load" file="$(find siasun_dualarm5b_moveit_config)/config/controllers.yaml" />
+  <include file="$(find siasun_dualarm_driver)/launch/robot_interface_download.launch">
+    <arg name="robot_ip"   value="$(arg robot_ip)" />
+    <arg name="use_bswap"  value="$(arg use_bswap)" />
+  </include>
+  <include file="$(find siasun_dualarm_driver)/launch/io_states_config.launch">
+    <arg name="robot_ip"   value="$(arg robot_ip)" />
+    <arg name="use_bswap"  default="$(arg use_bswap)" />
+  </include>
+  <include file="$(find siasun_dualarm_driver)/launch/system_safty.launch">
+    <arg name="robot_ip"   value="$(arg robot_ip)" />
+    <arg name="use_bswap"  default="$(arg use_bswap)" />
+  </include>
+</launch>

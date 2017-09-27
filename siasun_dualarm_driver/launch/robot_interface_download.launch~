@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<launch>
+
+
+  <!-- copy the specified parameters to the Parameter Server, for 
+       use by nodes below -->
+  <arg name="use_bswap"/>
+  <arg name="robot_ip"/>
+ 
+  <!-- robot_state: publishes joint positions and robot-state data
+       (from socket connection to robot)
+  -->
+  <include file="$(find siasun_dualarm_driver)/launch/robot_state.launch">
+    <arg name="robot_ip"   value="$(arg robot_ip)" />
+    <arg name="use_bswap"  default="$(arg use_bswap)" />
+  </include>
+
+  <!-- motion_streaming_interface: sends robot motion commands by 
+       STREAMING path to robot (using socket connection to robot) 
+  -->
+  <include file="$(find siasun_dualarm_driver)/launch/motion_download_interface.launch">
+    <arg name="robot_ip"   value="$(arg robot_ip)" />
+    <arg name="use_bswap"  default="$(arg use_bswap)" />
+  </include>
+
+  <!-- joint_trajectory_action: provides actionlib interface for 
+       high-level robot control
+  -->
+  <node pkg="siasun_dualarm_driver" type="joint_trajectory_action" 
+    name="joint_trajectory_action" output="screen" />
+</launch>
+
+
+

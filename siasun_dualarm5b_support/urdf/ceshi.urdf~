@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+<robot name="dof7">
+<material name ="Blue">
+   <color rgba="0 0 0.8 1.0"/>
+ </material>
+<material name ="Black">
+   <color rgba="0 0 0 1.0"/>
+ </material>
+<material name ="White">
+   <color rgba="1 1 1 1"/>
+ </material>
+
+
+<!-- base_link_r -->
+  <link name="base_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://dof7/meshes/base_link.dae"/>
+      </geometry>
+      <material name ="White"/>
+    </visual>
+   <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://dof7/meshes/base_link.dae"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.000000 0.000000 0.000000"/>
+      <mass value="6.71"/>
+      <inertia ixx="0.04379859" ixy="-0.00009673" ixz="-0.0002798" iyy="0.04372922" iyz="-0.00020359" izz="0.01602542"/>
+    </inertial>
+  </link>
+
+<!-- link_1_r -->
+<link name="link_1_r">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://dof7/meshes/link_1.dae"/>
+      </geometry>
+      <material name ="White"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://dof7/meshes/link_1.dae"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="7.41"/>
+      <inertia ixx="0.02647895" ixy="0.00001015" ixz="-0.00000127" iyy="0.01785471" iyz="-0.0005725" izz="0.02397166"/>
+    </inertial>
+  </link>
+<!-- r_joint_1 -->
+<joint name="r_joint_1" type="revolute">
+    <origin rpy="0 0 -1.5707963" xyz="0 0 0.155"/>
+    <parent link="base_link"/>
+    <child link="link_1_r"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="500.0" lower="-3.1415926" upper="3.1415926" velocity="1.5"/>
+  </joint>
+</robot>

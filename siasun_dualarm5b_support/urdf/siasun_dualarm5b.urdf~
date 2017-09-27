@@ -1,0 +1,487 @@
+<?xml version="1.0" ?>
+<robot name="siasun_dualarm5b">
+<material name ="Blue">
+   <color rgba="0 0 1.0 1.0"/>
+ </material>
+<material name ="Black">
+   <color rgba="0 0 0 0.8"/>
+ </material>
+<material name ="Dark Blue">
+   <color rgba="0.098 0.098 0.439 1.0"/>
+ </material>
+<material name ="light Blue">
+   <color rgba="0.387 0.584 0.93 1.0"/>
+ </material>
+<material name ="White">
+   <color rgba="1 1 1 1"/>
+ </material>
+<material name ="Antique White">
+   <color rgba="0.98 0.92 0.84 1"/>
+ </material>
+<material name ="Gray">
+   <color rgba="0.5 0.46 0.412 1"/>
+ </material>
+<material name ="Dark Gray">
+   <color rgba="0.212 0.212 0.212 1"/>
+ </material>
+ <material name ="Silver">
+    <color rgba="0.588 0.588 0.588 1"/>
+  </material>
+<!-- base -->
+ <link name="base"/>
+
+<!-- base_link-base -->
+  <joint name="base_link-base" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 -0.023"/>
+    <parent link="base"/>
+    <child link="base_link"/>
+  </joint>
+<!-- base_link -->
+<link name="base_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://siasun_dualarm5b_support/meshes/base.stl"/>
+      </geometry>
+      <material name ="Dark Gray"/>
+    </visual>
+   <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://siasun_dualarm5b_support/collision/base.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.000000 0.000000 0.000000"/>
+      <mass value="46.390"/>
+      <inertia ixx="0.04372922" ixy="0.00009673" ixz="0.00020359" iyy="0.04379859" iyz="-0.0002798" izz="0.01602542"/>
+    </inertial>
+  </link>
+<!-- base_link_r -->
+  <link name="base_link_r">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://siasun_dualarm5b_support/meshes/base_link.stl"/>
+      </geometry>
+      <material name ="Dark Gray"/>
+    </visual>
+   <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://siasun_dualarm5b_support/collision/base_link.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.000000 0.000000 0.000000"/>
+      <mass value="6.71"/>
+      <inertia ixx="0.04379859" ixy="-0.00009673" ixz="-0.0002798" iyy="0.04372922" iyz="-0.00020359" izz="0.01602542"/>
+    </inertial>
+  </link>
+<!-- joint_base_r -->
+<joint name="joint_base_r" type="fixed">
+    <origin rpy="0 -1.5707963 3.1415926" xyz="0.075 0 1.330"/>
+    <parent link="base_link"/>
+    <child link="base_link_r"/>
+ </joint>
+<!-- link_1_r -->
+<link name="link_1_r">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://siasun_dualarm5b_support/meshes/link_1.stl"/>
+      </geometry>
+      <material name ="Dark Gray"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://siasun_dualarm5b_support/collision/link_1.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="7.41"/>
+      <inertia ixx="0.02647895" ixy="0.00001015" ixz="-0.00000127" iyy="0.01785471" iyz="-0.0005725" izz="0.02397166"/>
+    </inertial>
+  </link>
+<!-- r_joint_1 -->
+<joint name="r_joint_1" type="revolute">
+    <origin rpy="0 0 -1.5707963" xyz="0 0 0.172"/>
+    <parent link="base_link_r"/>
+    <child link="link_1_r"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="500.0" lower="-3.054326" upper="3.054326" velocity="4"/>
+  </joint>
+<!-- link_2_r -->
+<link name="link_2_r">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://siasun_dualarm5b_support/meshes/link_2.stl"/>
+      </geometry>
+      <material name ="Dark Gray"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://siasun_dualarm5b_support/collision/link_2.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+       <mass value="5.9"/>
+      <inertia ixx="0.05712791" ixy="-0.00009633" ixz="-0.01653353" iyy="0.06161139" iyz="0.00025640" izz="0.01755382"/>
+    </inertial>
+  </link>
+<!-- r_joint_2 -->
+<joint name="r_joint_2" type="revolute">
+    <origin rpy="0 1.5707963 0" xyz="0 0 0.13985"/>
+    <parent link="link_1_r"/>
+    <child link="link_2_r"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="500.0" lower="-1.7453293" upper="1.7453293" velocity="4"/>
+  </joint>
+<!-- link_3_r -->
+<link name="link_3_r">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://siasun_dualarm5b_support/meshes/link_3.stl"/>
+      </geometry>
+     <material name ="Dark Gray"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://siasun_dualarm5b_support/collision/link_3.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.000000 0.000000 0.000000"/>
+      <mass value="5.6"/>
+      <inertia ixx="0.03218577" ixy="0.00000958" ixz="0.00000031" iyy="0.01058063" iyz="0.00083228" izz="0.03094771"/>
+    </inertial>
+  </link>
+<!-- r_joint_3 -->
+<joint name="r_joint_3" type="revolute">
+    <origin rpy="0 -1.5707963 0" xyz="-0.2695 0 0"/>
+    <parent link="link_2_r"/>
+    <child link="link_3_r"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="500.0" lower="-3.054326" upper="3.054326" velocity="4"/>
+  </joint>
+<!-- link_4_r -->
+<link name="link_4_r">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://siasun_dualarm5b_support/meshes/link_4.stl"/>
+      </geometry>
+      <material name ="Dark Gray"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://siasun_dualarm5b_support/collision/link_4.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.000000 0.000000 0.000000"/>
+      <mass value="3.74"/>
+      <inertia ixx="0.02209910" ixy="-0.00001512" ixz="-0.01207310" iyy="0.03814239" iyz="0.00002115" izz="0.00942834"/>
+    </inertial>
+  </link>
+<!-- r_joint_4 -->
+<joint name="r_joint_4" type="revolute">
+    <origin rpy="0 1.5707963 0" xyz="0 0 0.1305"/>
+    <parent link="link_3_r"/>
+    <child link="link_4_r"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="500.0" lower="-1.91986" upper="1.91986" velocity="4"/>
+  </joint>
+<!-- link_5_r -->
+<link name="link_5_r">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://siasun_dualarm5b_support/meshes/link_5.stl"/>
+      </geometry>
+     <material name ="Dark Gray"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://siasun_dualarm5b_support/collision/link_5.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.000000 0.000000 0.000000"/>
+      <mass value="4.06"/>
+      <inertia ixx="0.01985573" ixy="0.00000974" ixz="0.00000305" iyy="0.00687349" iyz="0.00125907" izz="0.01936750"/>
+    </inertial>
+  </link>
+<!-- r_joint_5 -->
+<joint name="r_joint_5" type="revolute">
+    <origin rpy="0 1.5707963 3.141592654" xyz="-0.2725 0 0"/>
+    <parent link="link_4_r"/>
+    <child link="link_5_r"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="500.0" lower="-3.054326" upper="3.054326" velocity="4"/>
+  </joint>
+<!-- link_6_r -->
+<link name="link_6_r">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://siasun_dualarm5b_support/meshes/link_6.stl"/>
+      </geometry>
+      <material name ="Dark Gray"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://siasun_dualarm5b_support/collision/link_6.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.000000 0.000000 0.000000"/>
+      <mass value="3.90"/>
+      <inertia ixx="0.03004330" ixy="-0.00001115" ixz="-0.00815941" iyy="0.03217857" iyz="-0.00000912" izz="0.00854101"/>
+    </inertial>
+  </link>
+<!-- r_joint_6 -->
+<joint name="r_joint_6" type="revolute">
+    <origin rpy="0 1.5707963 3.141592654" xyz="0 0 0.1275"/>
+    <parent link="link_5_r"/>
+    <child link="link_6_r"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="500.0" lower="-1.83259" upper="1.83259" velocity="4"/>
+  </joint>
+<!-- link_7_r -->
+<link name="link_7_r">
+  
+  </link>
+<!-- r_joint_7 -->
+<joint name="r_joint_7" type="revolute">
+    <origin rpy="0 -1.5707963 0" xyz="-0.1668 0 0"/>
+    <parent link="link_6_r"/>
+    <child link="link_7_r"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="500.0" lower="-3.054326" upper="3.054326" velocity="4"/>
+  </joint>
+
+
+
+<!-- base_link_l -->
+  <link name="base_link_l">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://siasun_dualarm5b_support/meshes/base_link.stl"/>
+      </geometry>
+      <material name ="Dark Gray"/>
+    </visual>
+   <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://siasun_dualarm5b_support/collision/base_link.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.000000 0.000000 0.000000"/>
+      <mass value="6.71"/>
+      <inertia ixx="0.04379859" ixy="-0.00009673" ixz="-0.0002798" iyy="0.04372922" iyz="-0.00020359" izz="0.01602542"/>
+    </inertial>
+  </link>
+<!-- joint_base_l -->
+<joint name="joint_base_l" type="fixed">
+    <origin rpy="3.141592654 1.5707963 0" xyz="-0.075 0 1.330"/>
+    <parent link="base_link"/>
+    <child link="base_link_l"/>
+ </joint>
+<!-- link_1_l -->
+<link name="link_1_l">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://siasun_dualarm5b_support/meshes/link_1.stl"/>
+      </geometry>
+      <material name ="Dark Gray"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://siasun_dualarm5b_support/collision/link_1.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="7.41"/>
+      <inertia ixx="0.02647895" ixy="0.00001015" ixz="-0.00000127" iyy="0.01785471" iyz="-0.0005725" izz="0.02397166"/>
+    </inertial>
+  </link>
+<!-- l_joint_1 -->
+<joint name="l_joint_1" type="revolute">
+    <origin rpy="0 0 -1.5707963" xyz="0 0 0.172"/>
+    <parent link="base_link_l"/>
+    <child link="link_1_l"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="500.0" lower="-3.054326" upper="3.054326" velocity="4"/>
+  </joint>
+<!-- link_2_l -->
+<link name="link_2_l">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://siasun_dualarm5b_support/meshes/link_2.stl"/>
+      </geometry>
+      <material name ="Dark Gray"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://siasun_dualarm5b_support/collision/link_2.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+       <mass value="5.9"/>
+      <inertia ixx="0.05712791" ixy="-0.00009633" ixz="-0.01653353" iyy="0.06161139" iyz="0.00025640" izz="0.01755382"/>
+    </inertial>
+  </link>
+<!-- l_joint_2 -->
+<joint name="l_joint_2" type="revolute">
+    <origin rpy="0 1.5707963 0" xyz="0 0 0.13985"/>
+    <parent link="link_1_l"/>
+    <child link="link_2_l"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="500.0" lower="-1.7453293" upper="1.7453293" velocity="4"/>
+  </joint>
+<!-- link_3_l -->
+<link name="link_3_l">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://siasun_dualarm5b_support/meshes/link_3.stl"/>
+      </geometry>
+     <material name ="Dark Gray"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://siasun_dualarm5b_support/collision/link_3.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.000000 0.000000 0.000000"/>
+      <mass value="5.6"/>
+      <inertia ixx="0.03218577" ixy="0.00000958" ixz="0.00000031" iyy="0.01058063" iyz="0.00083228" izz="0.03094771"/>
+    </inertial>
+  </link>
+<!-- l_joint_3 -->
+<joint name="l_joint_3" type="revolute">
+    <origin rpy="0 -1.5707963 0" xyz="-0.2695 0 0"/>
+    <parent link="link_2_l"/>
+    <child link="link_3_l"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="500.0" lower="-3.054326" upper="3.054326" velocity="4"/>
+  </joint>
+<!-- link_4_l -->
+<link name="link_4_l">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://siasun_dualarm5b_support/meshes/link_4.stl"/>
+      </geometry>
+      <material name ="Dark Gray"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://siasun_dualarm5b_support/collision/link_4.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.000000 0.000000 0.000000"/>
+      <mass value="3.74"/>
+      <inertia ixx="0.02209910" ixy="-0.00001512" ixz="-0.01207310" iyy="0.03814239" iyz="0.00002115" izz="0.00942834"/>
+    </inertial>
+  </link>
+<!-- l_joint_4 -->
+<joint name="l_joint_4" type="revolute">
+    <origin rpy="0 1.5707963 0" xyz="0 0 0.1305"/>
+    <parent link="link_3_l"/>
+    <child link="link_4_l"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="500.0" lower="-1.91986" upper="1.91986" velocity="4"/>
+  </joint>
+<!-- link_5_l -->
+<link name="link_5_l">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://siasun_dualarm5b_support/meshes/link_5.stl"/>
+      </geometry>
+     <material name ="Dark Gray"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://siasun_dualarm5b_support/collision/link_5.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.000000 0.000000 0.000000"/>
+      <mass value="4.06"/>
+      <inertia ixx="0.01985573" ixy="0.00000974" ixz="0.00000305" iyy="0.00687349" iyz="0.00125907" izz="0.01936750"/>
+    </inertial>
+  </link>
+<!-- l_joint_5 -->
+<joint name="l_joint_5" type="revolute">
+    <origin rpy="0 1.5707963 3.1415926" xyz="-0.2725 0 0"/>
+    <parent link="link_4_l"/>
+    <child link="link_5_l"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="500.0" lower="-3.054326" upper="3.054326" velocity="4"/>
+  </joint>
+<!-- link_6_l -->
+<link name="link_6_l">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://siasun_dualarm5b_support/meshes/link_6.stl"/>
+      </geometry>
+      <material name ="Dark Gray"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://siasun_dualarm5b_support/collision/link_6.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.000000 0.000000 0.000000"/>
+      <mass value="3.90"/>
+      <inertia ixx="0.03004330" ixy="-0.00001115" ixz="-0.00815941" iyy="0.03217857" iyz="-0.00000912" izz="0.00854101"/>
+    </inertial>
+  </link>
+<!-- l_joint_6 -->
+<joint name="l_joint_6" type="revolute">
+    <origin rpy="0 1.5707963 3.141592654" xyz="0 0 0.1275"/>
+    <parent link="link_5_l"/>
+    <child link="link_6_l"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="500.0" lower="-1.83259" upper="1.83259" velocity="4"/>
+  </joint>
+<!-- link_7_l -->
+<link name="link_7_l">
+  </link>
+<!-- l_joint_7 -->
+<joint name="l_joint_7" type="revolute">
+    <origin rpy="3.141592654 1.5707963 0" xyz="-0.16880 0 0"/>
+    <parent link="link_6_l"/>
+    <child link="link_7_l"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="500.0" lower="-3.054326" upper="3.054326" velocity="4"/>
+  </joint>
+
+
+
+</robot>

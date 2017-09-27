@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!-- 
+  Wrapper launch file for the Fanuc specific robot_state node.
+-->
+<launch>
+  <!-- put them on the parameter server -->
+<!--
+  <arg name="use_bswap" value="arg use_bswap"/>
+  <param name="robot_ip_address" value="arg robot_ip"/>
+-->
+  <arg name="use_bswap"/>
+  <arg name="robot_ip"/>
+  <param name="robot_ip_address" type="str" value="$(arg robot_ip)"/>
+  <!-- load the correct version of the robot state node -->
+  <node if="$(arg use_bswap)" name="siasun_robot_state_bswap" 
+    pkg="siasun_dualarm_driver" type="siasun_robot_state_bswap" output="screen"/>
+  <node unless="$(arg use_bswap)" name="siasun_robot_state" pkg="siasun_dualarm_driver" type="siasun_robot_state" output="screen">
+   <rosparam command="load" file="$(find siasun_dualarm5b_moveit_config)/config/kinematics.yaml"/>
+  </node>
+</launch>

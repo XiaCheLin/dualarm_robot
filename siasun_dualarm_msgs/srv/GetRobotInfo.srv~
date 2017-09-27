@@ -1,0 +1,7 @@
+# The Get Robot Info service returns vendor specific information about
+# the robot(s) connected by the driver
+
+---
+siasun_dualarm_msgs/DeviceInfo controller
+siasun_dualarm_msgs/DeviceInfo[] robots
+siasun_dualarm_msgs/ServiceReturnCode code

@@ -1,0 +1,10 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: siasun_dualarm5b_support
+    relative_path: urdf/siasun_dualarm5b.urdf
+  SRDF:
+    relative_path: config/siasun_dualarm5b.srdf
+  CONFIG:
+    author_name: Songlin Han
+    author_email: hansl_nuaa@163.com
+    generated_timestamp: 1504574137
